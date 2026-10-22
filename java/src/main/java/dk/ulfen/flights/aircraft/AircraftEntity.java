@@ -220,7 +220,13 @@ public class AircraftEntity extends Mob implements GeoEntity {
 		this.entityData.set(THROTTLE, (float) s.throttle);
 		this.entityData.set(BURNER, s.burner);
 		this.entityData.set(ANCHORED, s.anchored);
+		// Other mods (Realistic Hunting: game hears the burner) can see it without depending on this one.
+		if (s.burner) this.addTag(BURNER_TAG);
+		else this.removeTag(BURNER_TAG);
 	}
+
+	/** Entity tag while the balloon's burner is lit. */
+	public static final String BURNER_TAG = "flights.burner";
 
 	/**
 	 * Rising air under an aircraft: over campfires and lava, and over sand in the daytime,
