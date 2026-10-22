@@ -1,7 +1,7 @@
 {
   "name": "flights",
-  "version": "0.1.0",
-  "description": "Flights: a Minecraft Bedrock add-on and Java mod with a paraglider, a hot-air balloon, a glider, a light aircraft, a business jet, a gyrocopter and a helicopter you can fly, and a parachute to bail out with",
+  "version": "0.2.0",
+  "description": "Flights: a Minecraft Bedrock add-on and Java mod with a paraglider, a hot-air balloon, a glider, a light aircraft, a seaplane, a business jet, a gyrocopter and a helicopter you can fly, and a parachute to bail out with",
   "private": true,
   "type": "module",
   "scripts": {

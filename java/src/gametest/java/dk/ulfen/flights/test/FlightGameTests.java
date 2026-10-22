@@ -157,6 +157,30 @@ public class FlightGameTests {
 		});
 	}
 
+	/** The seaplane floats on a pond, and takes off from it. A land plane would sink. */
+	@GameTest(maxTicks = 300, structure = "flights-test:empty_large")
+	public void seaplaneFloatsAndTakesOff(GameTestHelper helper) {
+		for (int x = 2; x < 38; x++) for (int z = 2; z < 38; z++) helper.setBlock(new BlockPos(x, 1, z), net.minecraft.world.level.block.Blocks.WATER);
+		AircraftEntity sea = spawn(helper, "seaplane", new BlockPos(20, 4, 4), 0);
+		AircraftEntity land = spawn(helper, "light_aircraft", new BlockPos(30, 4, 30), 0);
+		double surface = helper.absoluteVec(new Vec3(0, 2, 0)).y;
+		helper.runAfterDelay(60, () -> {
+			if (Math.abs(sea.getY() - surface) > 0.3) helper.fail("seaplane at " + sea.getY() + ", water surface at " + surface);
+			if (land.getY() > surface - 0.5) helper.fail("the land plane floats too (" + land.getY() + ")");
+			// Full throttle across the pond, stick back.
+			Flight.State s = Flight.State.initial(0);
+			s.speed = 0.75;
+			s.throttle = 1;
+			sea.setFlight(s);
+			sea.testInput = pilot(1, -25, 0, false);
+		});
+		helper.runAfterDelay(80, () -> {
+			if (sea.getY() < surface + 1) helper.fail("did not take off from the water (y " + sea.getY() + ")");
+			sea.discard();
+			helper.succeed();
+		});
+	}
+
 	/** Getting out in the air leaves you at the aircraft's height (to bail out), not on the ground. */
 	@GameTest(maxTicks = 60, structure = "flights-test:empty_large")
 	public void bailOutInTheAir(GameTestHelper helper) {

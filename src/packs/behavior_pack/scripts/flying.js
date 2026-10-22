@@ -27,15 +27,24 @@ function stateOf(e, spec) {
 export const flightOf = (e) => planes.get(e.id)?.s;
 export const forgetPlane = (id) => planes.delete(id);
 
-/** Standing on something: any of the blocks just under the hitbox's centre and corners. */
+const isWater = (b) => b?.typeId === 'minecraft:water' || b?.typeId === 'minecraft:flowing_water';
+
+/**
+ * Standing on something: any of the blocks just under the hitbox's centre and corners. An
+ * aircraft on floats also stands on water.
+ */
 function onGround(e, spec) {
   const { x, y, z } = e.location;
   const h = spec.width / 2 - 0.05;
   for (const [dx, dz] of [[0, 0], [h, h], [h, -h], [-h, h], [-h, -h]]) {
-    if (isGround(blockAt(e.dimension, x + dx, y - 0.06, z + dz))) return true;
+    const b = blockAt(e.dimension, x + dx, y - 0.06, z + dz);
+    if (isGround(b) || (spec.flight.floats && isWater(b))) return true;
   }
   return false;
 }
+
+/** Floats pushed under the surface come back up. */
+const submerged = (e, spec) => spec.flight.floats && isWater(blockAt(e.dimension, e.location.x, e.location.y + 0.25, e.location.z));
 
 /**
  * Rising air under an aircraft: warm air over campfires and lava, and over sand in the
@@ -180,6 +189,7 @@ function fly(e, now) {
   const input = readInput(pilot);
   const env = { onGround: ground, y: loc.y, time: now, lift: p.lift, hit };
   const s = step(s0, input, spec.flight, env);
+  if (submerged(e, spec)) s.vy = Math.max(s.vy, 0.1);
   s.onGround = ground;
   p.s = s;
   p.last = loc;

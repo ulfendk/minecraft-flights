@@ -26,6 +26,8 @@ test('the light aircraft takes off within 60 blocks, the jet needs a longer runw
   assert.ok(light && light.dist < 60, `light aircraft: ${light?.dist}`);
   assert.ok(jet && jet.dist > light.dist * 1.4, `jet: ${jet?.dist}`);
   assert.ok(gyro && gyro.dist < light.dist, `gyrocopter: ${gyro?.dist}`);
+  const sea = takeoff(byId.seaplane);
+  assert.ok(sea && sea.dist < 60, `seaplane: ${sea?.dist}`);
 });
 
 test('without the stick pulled back a plane stays on the runway', () => {

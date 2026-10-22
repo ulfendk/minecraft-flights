@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.0] - 2026-10-22
+### Added
+- A seaplane: a six-seat bush plane on floats that takes off from and lands on water (and on the ground). It floats at the surface, and comes back up if pushed under.
+
 ## [0.1.0] - 2026-10-22
 ### Added
 - Seven aircraft you can fly, on Bedrock and Java: a paraglider, a hot-air balloon, a glider, a light aircraft, a business jet, a gyrocopter and a helicopter. Each has its own model, spinning propellers and rotors, and tilts as it climbs and banks.

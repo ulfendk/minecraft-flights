@@ -23,6 +23,8 @@ public final class Flight {
 		public double turn = 3, ceiling = 320, pitchRate = 2.5, rollRate = 3, taxiTurn = 3, brake = 0.04, run;
 		public int winch;
 		public boolean fixedPitch;
+		/** on floats: water counts as ground */
+		public boolean floats;
 		public double liftFactor = 1, windFactor, climb, sink, cool, accel;
 	}
 

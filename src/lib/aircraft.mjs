@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'aircraft');
 
 /** Display order everywhere (creative tab, site, handbook). */
-export const ORDER = ['paraglider', 'hot_air_balloon', 'glider', 'light_aircraft', 'business_jet', 'gyrocopter', 'helicopter'];
+export const ORDER = ['paraglider', 'hot_air_balloon', 'glider', 'light_aircraft', 'seaplane', 'business_jet', 'gyrocopter', 'helicopter'];
 
 export const GROUPS = ['unpowered', 'plane', 'rotorcraft'];
 export const KINDS = ['wing', 'heli', 'balloon'];

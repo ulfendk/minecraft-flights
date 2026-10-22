@@ -19,6 +19,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -167,8 +168,14 @@ public class AircraftEntity extends Mob implements GeoEntity {
 		return testInput != null ? testInput : Flight.Input.NONE;
 	}
 
+	/** On something solid, or (on floats) on water. */
 	private boolean standing() {
-		return !this.level().noCollision(this, this.getBoundingBox().move(0, -0.06, 0));
+		if (!this.level().noCollision(this, this.getBoundingBox().move(0, -0.06, 0))) return true;
+		return spec.flight.floats && water(-0.06);
+	}
+
+	private boolean water(double dy) {
+		return this.level().getFluidState(BlockPos.containing(this.getX(), this.getY() + dy, this.getZ())).is(FluidTags.WATER);
 	}
 
 	private void fly(ServerLevel level) {
@@ -189,6 +196,8 @@ public class AircraftEntity extends Mob implements GeoEntity {
 		if (this.tickCount % 10 == 0) lift = thermal(level, this.blockPosition());
 		Flight.Env env = new Flight.Env(ground, this.getY(), level.getGameTime(), lift, this.horizontalCollision);
 		Flight.State s = Flight.step(s0, input(pilot), spec.flight, env);
+		// Floats pushed under the surface come back up.
+		if (spec.flight.floats && water(0.25)) s.vy = Math.max(s.vy, 0.1);
 		state = s;
 		Vec3 v = new Vec3(s.vx, s.vy, s.vz);
 		this.setDeltaMovement(v);

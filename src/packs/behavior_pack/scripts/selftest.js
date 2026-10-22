@@ -30,6 +30,10 @@ export function selfTest(message) {
   glider.setRotation({ x: 0, y: 0 });
   glider.setDynamicProperty(`${NS}:flight`, JSON.stringify({ speed: 1.1, yaw: 0, vy: 0 }));
   const balloon = dim.spawnEntity(`${NS}:hot_air_balloon`, { x: -40.5, y: -60, z: -40.5 });
+  // A seaplane on a pond floats at the surface.
+  dim.runCommand('fill -60 -61 -10 -50 -61 0 water');
+  const sea = dim.spawnEntity(`${NS}:seaplane`, { x: -54.5, y: -58, z: -4.5 });
+  track(sea);
   track(glider);
   track(balloon);
   let y0;
@@ -42,6 +46,7 @@ export function selfTest(message) {
     // 40 ticks of gliding at 1:30 is about a block and a half down; falling would be far more.
     if (!s || dropped > 6 || dropped < 0.2) missing.push(`glider gliding (dropped ${dropped?.toFixed?.(2)})`);
     if (Math.abs(balloon.location.y + 60) > 0.2) missing.push('balloon parked');
+    if (Math.abs(sea.location.y + 60) > 0.3) missing.push(`seaplane floating (y ${sea.location.y.toFixed(2)})`);
   }, 45);
   system.runTimeout(() => {
     console.log(missing.length ? `${LOG} selftest FAIL missing: ${missing.join(' ')}` : `${LOG} selftest PASS`);

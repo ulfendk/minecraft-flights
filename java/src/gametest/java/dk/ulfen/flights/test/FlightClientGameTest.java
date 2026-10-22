@@ -16,7 +16,7 @@ import net.minecraft.world.phys.AABB;
 /**
  * Starts a real client: screenshots every aircraft (images land in build/run/clientGameTest/screenshots),
  * climbs in and flies it with simulated keys (the planes take off, the helicopter and the balloon climb,
- * the glider is winched up), then bails out of the helicopter with a parachute in the inventory and checks
+ * the glider is winched up, the seaplane takes off from water), then bails out of the helicopter with a parachute in the inventory and checks
  * that it opens. `-Pflights.screenshot=glider,helicopter` limits it to those aircraft.
  */
 public class FlightClientGameTest implements FabricClientGameTest {
@@ -39,10 +39,13 @@ public class FlightClientGameTest implements FabricClientGameTest {
 				server.runCommand("ride @p dismount");
 				server.runCommand("kill @e[type=!player]");
 				// A runway along +z (fill is limited to 32768 blocks per command).
-				for (int z = -20; z < 300; z += 100) server.runCommand("fill -12 -61 " + z + " 12 -61 " + (z + 99) + " minecraft:smooth_stone");
+				// The seaplane gets a strip of water instead.
+				String surface = spec.flight.floats ? "minecraft:water" : "minecraft:smooth_stone";
+				for (int z = -20; z < 300; z += 100) server.runCommand("fill -12 -61 " + z + " 12 -61 " + (z + 99) + " " + surface);
 				for (int z = -20; z < 300; z += 40) server.runCommand("fill -12 -60 " + z + " 12 -30 " + (z + 39) + " minecraft:air");
 				server.runCommand("tp @a 0 -60 -12");
 				server.runCommand("summon " + type + " 0.5 -60 0.5 {Rotation:[0f,0f]}");
+				if (spec.flight.floats) server.runCommand("setblock 0 -61 -12 minecraft:stone"); // somewhere to stand
 				context.waitTicks(10);
 				look(context, server, 9, -56, -9, 45, 15);
 				context.takeScreenshot("aircraft_" + spec.id);

@@ -11,9 +11,13 @@ import { parachute } from '../src/gear.mjs';
 
 const aircraft = await loadAircraft();
 
-test('all seven aircraft load, in the display order', () => {
+test('all eight aircraft load, in the display order', () => {
   assert.deepEqual(aircraft.map((a) => a.id), ORDER);
-  assert.equal(aircraft.length, 7);
+  assert.equal(aircraft.length, 8);
+});
+
+test('only the seaplane lands on water', () => {
+  assert.deepEqual(aircraft.filter((a) => a.flight.floats).map((a) => a.id), ['seaplane']);
 });
 
 for (const a of [...aircraft, parachute]) {

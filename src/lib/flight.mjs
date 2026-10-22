@@ -39,7 +39,7 @@ export function wind(y, t) {
 export const DEFAULTS = {
   kind: 'wing', thrust: 0, maxSpeed: 0, trim: 0, glide: 0, stall: 1, stallSink: 0.5, maxPitch: 20, maxBank: 30,
   turn: 3, ceiling: 320, pitchRate: 2.5, rollRate: 3, taxiTurn: 3, brake: 0.04, run: 0, winch: 0,
-  fixedPitch: false, liftFactor: 1, windFactor: 0, climb: 0, sink: 0, cool: 0, accel: 0,
+  fixedPitch: false, floats: false, liftFactor: 1, windFactor: 0, climb: 0, sink: 0, cool: 0, accel: 0,
 };
 export const normalize = (f) => ({ ...DEFAULTS, ...f });
 

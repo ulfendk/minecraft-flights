@@ -88,7 +88,7 @@ export function langEntries(locale, { aircraft, items, description, version }) {
   const pick = (pair) => pair[i] ?? pair[0];
   const out = [];
   out.push(['pack.description', da
-    ? `Flights: paraglidere, luftballoner, svævefly, fly, et jetfly, en gyrokopter og en helikopter, som du kan flyve (v${version})`
+    ? `Flights: paraglidere, luftballoner, svævefly, fly, vandfly, et jetfly, en gyrokopter og en helikopter, som du kan flyve (v${version})`
     : `${description} (v${version})`]);
   for (const a of aircraft) {
     out.push([`entity.${NS}:${a.id}.name`, da?.names[a.id] ?? a.name]);

@@ -1,14 +1,14 @@
 # Flights
 
-A Minecraft **Bedrock Edition** add-on and **Java Edition** (Fabric) mod with seven aircraft you can fly: a paraglider, a hot-air balloon, a glider, a light aircraft, a business jet, a gyrocopter and a helicopter – and a parachute to bail out with.
+A Minecraft **Bedrock Edition** add-on and **Java Edition** (Fabric) mod with eight aircraft you can fly: a paraglider, a hot-air balloon, a glider, a light aircraft, a seaplane that lands on water, a business jet, a gyrocopter and a helicopter – and a parachute to bail out with.
 
 **Download and info: https://ulfendk.github.io/minecraft-flights/** (på dansk: https://ulfendk.github.io/minecraft-flights/da/)
 
 ![All aircraft](https://ulfendk.github.io/minecraft-flights/img/aircraft/hot_air_balloon.png)
 
 ## Features
-- **Seven aircraft**, each with its own model, spinning propellers and rotors, and a body that pitches and banks.
-- **One flight model for both editions** (`src/lib/flight.mjs`, mirrored in Java): planes need a take-off run and stall when too slow; gliders and paragliders trade height for speed (1:30 and 1:8); the glider has a winch launch; the gyrocopter can't stall; the helicopter hovers; the balloon holds its height and drifts with a wind that turns with height.
+- **Eight aircraft**, each with its own model, spinning propellers and rotors, and a body that pitches and banks.
+- **One flight model for both editions** (`src/lib/flight.mjs`, mirrored in Java): planes need a take-off run and stall when too slow; gliders and paragliders trade height for speed (1:30 and 1:8); the glider has a winch launch; the seaplane takes off from and lands on water; the gyrocopter can't stall; the helicopter hovers; the balloon holds its height and drifts with a wind that turns with height.
 - **Rising air** over campfires, lava, and sand in the daytime.
 - **Bail out** with sneak in the air. Carry a parachute (wool and string) and it opens after a moment, or as soon as you jump. Steer it with the movement keys; it is packed away again when you land.
 - **Hunting from the balloon** with [Realistic Hunting](https://ulfendk.github.io/minecraft-hunting/): anchor it with jump, your shots fly through the basket, and while you hold a hunting weapon, sneak zooms the scope instead of getting you out.
@@ -20,7 +20,7 @@ Right-click an aircraft to climb in; the first seat flies. Sneak to get out.
 
 | | Bedrock | Java Edition |
 | --- | --- | --- |
-| Light aircraft, business jet, gyrocopter | W/S throttle, look up/down to climb or dive, turn by looking (or A/D), S on the ground brakes | same |
+| Light aircraft, seaplane, business jet, gyrocopter | W/S throttle, look up/down to climb or dive, turn by looking (or A/D), S on the ground brakes | same |
 | Glider | Jump on the ground: winch launch; look to pitch and turn | same |
 | Paraglider | Hold W to run off a slope; W speed bar, S brakes | same |
 | Hot-air balloon | W burner, S vent, let go to hold height, Jump: anchor, A/D turn the basket | same, Space: anchor |

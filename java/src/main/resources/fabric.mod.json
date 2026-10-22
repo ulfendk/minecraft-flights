@@ -3,7 +3,7 @@
 	"id": "flights",
 	"version": "${version}",
 	"name": "Flights",
-	"description": "A paraglider, a hot-air balloon, a glider, a light aircraft, a business jet, a gyrocopter and a helicopter you can fly, and a parachute to bail out with.",
+	"description": "A paraglider, a hot-air balloon, a glider, a light aircraft, a seaplane, a business jet, a gyrocopter and a helicopter you can fly, and a parachute to bail out with.",
 	"authors": ["ulfendk"],
 	"contact": {
 		"homepage": "https://ulfendk.github.io/minecraft-flights/",
