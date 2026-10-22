@@ -1,0 +1,28 @@
+{
+	"schemaVersion": 1,
+	"id": "flights",
+	"version": "${version}",
+	"name": "Flights",
+	"description": "A paraglider, a hot-air balloon, a glider, a light aircraft, a business jet, a gyrocopter and a helicopter you can fly, and a parachute to bail out with.",
+	"authors": ["ulfendk"],
+	"contact": {
+		"homepage": "https://ulfendk.github.io/minecraft-flights/",
+		"sources": "https://github.com/ulfendk/minecraft-flights",
+		"issues": "https://github.com/ulfendk/minecraft-flights/issues"
+	},
+	"license": "MIT",
+	"icon": "assets/flights/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": ["dk.ulfen.flights.Flights"],
+		"client": ["dk.ulfen.flights.client.FlightsClient"]
+	},
+	"mixins": ["flights.mixins.json"],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*",
+		"geckolib": ">=5.5"
+	}
+}

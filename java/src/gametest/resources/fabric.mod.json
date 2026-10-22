@@ -1,0 +1,18 @@
+{
+	"schemaVersion": 1,
+	"id": "flights-test",
+	"version": "1.0.0",
+	"name": "Flights tests",
+	"environment": "*",
+	"entrypoints": {
+		"fabric-gametest": [
+			"dk.ulfen.flights.test.FlightGameTests"
+		],
+		"fabric-client-gametest": [
+			"dk.ulfen.flights.test.FlightClientGameTest"
+		]
+	},
+	"depends": {
+		"flights": "*"
+	}
+}

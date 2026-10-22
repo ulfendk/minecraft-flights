@@ -1,0 +1,9 @@
+{
+	"required": true,
+	"package": "dk.ulfen.flights.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"mixins": ["PlayerMixin"],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
